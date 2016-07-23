@@ -109,6 +109,11 @@ html, body {
 	width: 50%;
 }
 
+.switch label input[type=checkbox]:checked+.lever:after {
+	left: auto;
+	right: 5px;
+}
+
 td.icon {
 	width: 40%;
 }
