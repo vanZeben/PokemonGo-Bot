@@ -356,18 +356,20 @@ function buildMenu() {
     document.getElementById('subtitle').innerHTML = "Trainer Info";
     out = '';
     for (var i = 0; i < stats.length; i++) {
-      out += '<div class="row"><div class="col s12"><h5>' + users[0] + '</h5><br>Level: ' + stats[i].inventory_item_data.player_stats.level +
-      '<br>Exp: ' + stats[i].inventory_item_data.player_stats.experience +
-      '<br>Exp to Lvl ' + (parseInt(stats[i].inventory_item_data.player_stats.level) + 1) + ': ' + (parseInt(stats[i].inventory_item_data.player_stats.next_level_xp) - stats[i].inventory_item_data.player_stats.experience) +
-      '<br>Pokemon Encountered: ' + stats[i].inventory_item_data.player_stats.pokemons_encountered +
-      '<br>Pokeballs Thrown: ' + stats[i].inventory_item_data.player_stats.pokeballs_thrown +
-      '<br>Pokemon Caught: ' + stats[i].inventory_item_data.player_stats.pokemons_captured +
-      '<br>Small Ratata Caught: ' + stats[i].inventory_item_data.player_stats.small_rattata_caught +
-      '<br>Pokemon Evolved: ' + stats[i].inventory_item_data.player_stats.evolutions +
-      '<br>Eggs Hatched: ' + stats[i].inventory_item_data.player_stats.eggs_hatched +
-      '<br>Unique Pokedex Entries: ' + stats[i].inventory_item_data.player_stats.unique_pokedex_entries +
-      '<br>PokeStops Visited: ' + stats[i].inventory_item_data.player_stats.poke_stop_visits +
-      '<br>Kilometers Walked: ' + parseFloat(stats[i].inventory_item_data.player_stats.km_walked).toFixed(2) + '</div></div>';
+      out += '<div class="row"><div class="col s12"><h5>' + users[0] + '</h5><ul class="stats">'+
+      '<li class="stat"><span class="name">Level:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.level + '</span></li>' +
+      '<li class="stat"><span class="name">Exp:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.experience + '</span></li>' +
+      '<li class="stat"><span class="name">Exp to Lvl</span> <span class="value">' + (parseInt(stats[i].inventory_item_data.player_stats.level) + 1) + ': ' + (parseInt(stats[i].inventory_item_data.player_stats.next_level_xp) - stats[i].inventory_item_data.player_stats.experience) + '</span></li>' +
+      '<li class="stat"><span class="name">Pokemon Encountered:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.pokemons_encountered + '</span></li>' +
+      '<li class="stat"><span class="name">Pokeballs Thrown:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.pokeballs_thrown + '</span></li>' +
+      '<li class="stat"><span class="name">Pokemon Caught:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.pokemons_captured + '</span></li>' +
+      '<li class="stat"><span class="name">Small Ratata Caught:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.small_rattata_caught + '</span></li>' +
+      '<li class="stat"><span class="name">Pokemon Evolved:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.evolutions + '</span></li>' +
+      '<li class="stat"><span class="name">Eggs Hatched:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.eggs_hatched + '</span></li>' +
+      '<li class="stat"><span class="name">Unique Pokedex Entries:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.unique_pokedex_entries + '</span></li>' +
+      '<li class="stat"><span class="name">PokeStops Visited:</span> <span class="value">' + stats[i].inventory_item_data.player_stats.poke_stop_visits + '</span></li>' +
+      '<li class="stat"><span class="name">Kilometers Walked:</span> <span class="value">' + parseFloat(stats[i].inventory_item_data.player_stats.km_walked).toFixed(2) +  '</span></li>' +
+      '</ul></div></div>';
     }
     document.getElementById('subcontent').innerHTML = out;
   }
@@ -375,7 +377,7 @@ function buildMenu() {
     document.getElementById('subtitle').innerHTML = "Items in Bag";
     out = '<div class="row items"><div class="col s12"><h5>' + users[0] + '</h5>';
     for (var i = 0; i < bagItems.length; i++) {
-      out += '<table><tr><td><img src="/image/items/' + bagItems[i].inventory_item_data.item.item_id + '.png" class="item_img"></td><td>Item: ' + itemsArray[bagItems[i].inventory_item_data.item.pokemon_id] +
+      out += '<table><tr><td class="icon"><img src="/image/items/' + bagItems[i].inventory_item_data.item.item_id + '.png" class="item_img"></td><td class="left-align title">Item: ' + itemsArray[bagItems[i].inventory_item_data.item.pokemon_id] +
       '<br>Count: ' + bagItems[i].inventory_item_data.item.count + '</td>';
     }
     out += '</tr></table></div></div>';
@@ -394,21 +396,21 @@ function buildMenu() {
         pkmnImage = pad_with_zeroes(bagPokemon[i].inventory_item_data.pokemon_data.pokemon_id, 3) + '.png'
         pkmnName = pokemonArray[pkmnNum-1].Name
       }
-      out += '<tr><td><img src="/image/pokemon/' + pkmnImage + '" class="png_img"></td><td class="left-align">Name: ' + pkmnName +
+      out += '<tr><td class="icon"><img src="/image/pokemon/' + pkmnImage + '" class="png_img"></td><td class="left-align title">Name: ' + pkmnName +
       '<br>Number: ' + pkmnNum + '</td></tr>';
     }
     out += '</table></div></div>';
     document.getElementById('subcontent').innerHTML = out;
   }
   if (menu == 4) {
-    document.getElementById('subtitle').innerHTML = "Pokedex";
+    document.getElementById('subtitle').innerHTML = "Pokedex [" + pokedex.length + " Caught]";
     out = '<div class="row items"><div class="col s12"><h5>' + users[0] + '</h5><table>';
     for (var i = 0; i < pokedex.length; i++) {
       pkmnNum = pokedex[i].inventory_item_data.pokedex_entry.pokedex_entry_number
       pkmnImage = pad_with_zeroes(pokedex[i].inventory_item_data.pokedex_entry.pokedex_entry_number, 3) + '.png'
       pkmnName = pokemonArray[pkmnNum-1].Name
       out += '<tr><td><img src="/image/pokemon/' + pkmnImage + '" class="png_img"></td><td class="left-align">Name: ' + pkmnName +
-      '<br>Number: ' + pkmnNum + '<br>Times Encountered: ' + pokedex[i].inventory_item_data.pokedex_entry.times_encountered + 
+      '<br>Number: ' + pkmnNum + '<br>Times Encountered: ' + pokedex[i].inventory_item_data.pokedex_entry.times_encountered +
       '<br>Times Caught: ' + pokedex[i].inventory_item_data.pokedex_entry.times_captured + '</td></tr>';
     }
     out += '</table></div></div>';

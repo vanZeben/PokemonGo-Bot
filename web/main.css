@@ -19,6 +19,7 @@ html, body {
 	position: relative;
 	display: inline-block;
 	max-width: 50%;
+	min-width: 225px;
 	float: left;
 	margin-left: 0;
 	margin-bottom: 0.75rem;
@@ -58,12 +59,24 @@ html, body {
 
 #submenu {
 	position: fixed;
-	left: 20px;
-	top: 30%;
+	right: 0.5em;
+	top: 10%;
 	max-height: 400px;
-	width: 50%;
+	width: auto;
 	z-index: 6;
 	display: none;
+}
+
+#submenu .stats .stat {
+	display: block;
+}
+
+#submenu .stats .stat .name {
+	font-weight: bold;
+}
+
+#submenu .stats .stat .value {
+	float: right;
 }
 
 .btn {
@@ -91,4 +104,15 @@ html, body {
 	width: 96px;
 	height: auto;
 }
->>>>>>> upstream/dev
+
+.switch label .lever {
+	width: 50%;
+}
+
+td.icon {
+	width 40%;
+}
+
+td.name {
+	width: 60%;
+}
