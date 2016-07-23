@@ -110,9 +110,9 @@ html, body {
 }
 
 td.icon {
-	width 40%;
+	width: 40%;
 }
 
-td.name {
+td.title {
 	width: 60%;
 }
